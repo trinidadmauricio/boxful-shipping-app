@@ -1,26 +1,189 @@
 @import "tailwindcss";
 
+/* Mona Sans Font */
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('/fonts/Mona-Sans.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Design Tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Primary */
+  --primary: #2e49ce;
+  --primary-hover: #2438a8;
+  --primary-light: #f6f6f6;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Azul */
+  --azul-oscuro: #16163d;
+  --azul-900: #050817;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Grays */
+  --dark-gray-50: #f8f9fa;
+  --dark-gray-100: #ededed;
+  --dark-gray-300: #b8b7b7;
+  --dark-gray-400: #636060;
+  --dark-gray-500: #4e4c4c;
+  --dark-gray-700: #3b3939;
+
+  /* Green (balance) */
+  --verde-oscuro-50: #e1e9e8;
+  --verde-oscuro-500: #1a5656;
+
+  /* Orange (COD) */
+  --naranja-50: #fff4f1;
+
+  /* Green (packages) */
+  --verde-claro-border: #a3d9a5;
+  --verde-claro-bg: #f0faf0;
+
+  /* Brand */
+  --brand-red: #E8432A;
+
+  /* Spacing */
+  --sidebar-width: 344px;
+  --header-height: 90px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Mona Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ant Design Global Overrides */
+.ant-btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+/* Input styling */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector,
+.ant-picker {
+  border-color: var(--dark-gray-100) !important;
+  border-radius: 8px !important;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05) !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused {
+  border-color: var(--primary) !important;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05), 0 0 0 2px rgba(46, 73, 206, 0.1) !important;
+}
+
+.ant-input::placeholder,
+.ant-input-affix-wrapper input::placeholder {
+  color: var(--dark-gray-300) !important;
+}
+
+/* Form label styling */
+.ant-form-item-label > label {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--azul-900) !important;
+}
+
+/* Hide required field asterisk (not in Figma design) */
+.ant-form-item-required::before {
+  display: none !important;
+}
+
+/* Large inputs = 48px height */
+.ant-input-lg,
+.ant-input-affix-wrapper-lg,
+.ant-select-lg .ant-select-selector,
+.ant-picker-large {
+  height: 48px !important;
+  padding: 12px !important;
+  font-size: 14px !important;
+}
+
+.ant-input-affix-wrapper-lg {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.ant-select-lg .ant-select-selector {
+  padding: 8px 12px !important;
+}
+
+.ant-select-lg .ant-select-selection-item,
+.ant-select-lg .ant-select-selection-placeholder {
+  font-size: 14px !important;
+  line-height: 30px !important;
+}
+
+/* Card styling */
+.ant-card {
+  border-color: var(--dark-gray-100) !important;
+  border-radius: 12px !important;
+}
+
+.ant-card-head {
+  border-bottom-color: transparent !important;
+  padding: 24px 32px 0 32px !important;
+}
+
+.ant-card-head-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--azul-oscuro) !important;
+}
+
+.ant-card-body {
+  padding: 24px 32px 32px 32px !important;
+}
+
+/* Compact form (no bottom margin on form items) */
+.compact-form .ant-form-item {
+  margin-bottom: 0;
+}
+
+/* Table styling */
+.ant-table-thead > tr > th {
+  background: var(--dark-gray-100) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: var(--dark-gray-700) !important;
+  border-bottom: none !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--dark-gray-50) !important;
+  font-size: 12px !important;
+}
+
+.ant-table-wrapper .ant-table {
+  background: white !important;
+  border-radius: 12px !important;
+}
+
+.ant-table-wrapper .ant-table-container {
+  border-radius: 12px !important;
+}
+
+/* Phone code selector styling */
+.phone-code-select .ant-select-selector {
+  background: var(--dark-gray-50) !important;
+  border-right: 1px solid var(--dark-gray-100) !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.phone-code-select .ant-select-arrow {
+  color: var(--dark-gray-400) !important;
 }

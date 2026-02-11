@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    container_name: boxful-shipping-app
+    ports:
+      - "3000:3000"
+    environment:
+      # URL del API backend - ajustar según donde corra el API
+      NEXT_PUBLIC_API_URL: "http://localhost:3001/api"
+    restart: unless-stopped
+    networks:
+      - boxful-network
+
+networks:
+  boxful-network:
+    driver: bridge
